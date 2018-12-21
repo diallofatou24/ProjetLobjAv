@@ -15,12 +15,12 @@ private:
 public:
 	Case(int px, int py, Couleur c);
 	virtual ~Case();
-	void affiche();
+	void affiche()const;
 	void setEtat(bool e);
 	int getPositionX();
 	int getPositionY();
 	Couleur getCouleur();
 	bool getEtat();
-}
+};
 
 #endif
