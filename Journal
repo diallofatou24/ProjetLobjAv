@@ -1,0 +1,10 @@
+pour ajouter son travail
+git add fichier
+git commit -m "message de commit"
+git push origin master 
+saisir login et mot de passe git
+pour charger son travail:
+git pull
+
+connaitre le status de ton depot
+git status
