@@ -68,6 +68,10 @@ for(int i{0}; i<10;i++){
 }
 //delete pj;
 j.affichePions();
+string nom ;
+cout << "votre nom:";
+cin >> nom;
+cout << "vous etes: " << nom << endl;
 
     /*cout << "Hello world!" << endl;
     vector<vector<int>> plateau;
