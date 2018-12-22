@@ -15,6 +15,14 @@ TypePion type;
 public:
 Pion();
 Pion(int val,Case* c, Couleur col,TypePion t);
+int getValeur();
+Case *  getCasePion();
+Couleur getColor();
+TypePion getType();
+void setValeur(int v);
+void setCasePion(Case * c);
+void setColor(Couleur c);
+void setType(TypePion p);
 virtual ~Pion();
 };
 #endif // PION_HPP

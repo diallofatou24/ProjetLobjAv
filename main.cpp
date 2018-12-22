@@ -2,6 +2,7 @@
 #include <vector>
 #include "Case.hpp"
 #include "Pion.hpp"
+#include "Joueur.hpp"
 
 
 using namespace std;
@@ -59,6 +60,14 @@ for(int i(0);i< 20;i++){
   Pion p;
   liste_pion[i]= p;
 }
+cout << endl;
+Joueur j(1,"diallo",10);
+Pion pj;
+for(int i{0}; i<10;i++){
+	j.addPions(&pj);
+}
+//delete pj;
+j.affichePions();
 
     /*cout << "Hello world!" << endl;
     vector<vector<int>> plateau;
