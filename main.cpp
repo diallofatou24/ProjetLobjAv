@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include "Case.hpp"
-#include "piont.hpp"
+#include "Pion.hpp"
+
 
 using namespace std;
 
@@ -52,11 +53,11 @@ cout<<endl;
 cout<<"   A B C D E F G H I J";
 
 
-vector<piont> liste_pion(20);
+vector<Pion> liste_pion(20);
 
 for(int i(0);i< 20;i++){
-piont()
-liste_pion[i]=
+  Pion p;
+  liste_pion[i]= p;
 }
 
     /*cout << "Hello world!" << endl;
