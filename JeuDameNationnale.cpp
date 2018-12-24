@@ -19,7 +19,7 @@ class JeuDameNationnale{
 	public :
 	JeuDameNationnale();
 	//fonction qui instanci un joueur
-	Joueur * createJoueur(int id, int nbp);
+	static Joueur * createJoueur(int id, int nbp);
 	//fonction de creation des cases
 	void createCases(int hauteur, int largeur);
 
@@ -39,24 +39,39 @@ Joueur* JeuDameNationnale::createJoueur(int id, int nbPions){
 	Couleur c;
 	Joueur *j = new Joueur(id, n, nbPions);
 	int couleur;
-	if(choixPion!=1){
+	
 
 		cout <<"choix de la couleur de pion:" << endl;
-		do
+		do{
 		cout << "Tapez 1 pour le blanc et 2 pour le noir: ";
 		cin >> couleur;
-	}while(couleur !=1 || couleur !=2);
+
+	}while(couleur !=1 && couleur !=2);
 		if(couleur ==1){
 			c= Couleur::blanc;
 		}else if(couleur ==2){
 			c= Couleur::noir;
+			cout << "je suis nor " << endl;
 		}
+		j->addPions(c,TypePion::pion);
+		return j;
 
 	}
-	cout << "choix des couleur de "
+	void JeuDameNationnale::affichePlateau(){}
+	void JeuDameNationnale::placePion(Joueur j){}
+	void JeuDameNationnale::createCases(int hauteur, int largeur){}
+
+	int main(int argc, char const *argv[])
+	{
+		
+		Joueur * j = JeuDameNationnale::createJoueur(1,20);
+		j->affichePions();
+		return 0;
+	}
+
+	
 
 
  
 
 
-}
