@@ -14,6 +14,7 @@ TypePion type;
 
 public:
 Pion();
+Pion(int val,Case* c, Couleur col,TypePion t);
 Pion(int val,Case& c, Couleur col,TypePion t);
 int getValeur();
 Case *  getCasePion();

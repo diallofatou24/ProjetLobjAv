@@ -28,16 +28,17 @@ Joueur::Joueur():id{0},nom{"Joueur1"},score{0}{}
 		score = score + c;
 	}
 	void Joueur::affichePions()const{
-		for(Pion p: pions){
+		for(int i(0); i<20;i++){
 			std::cout << "J" << id << " " ;
 		}
 		std::cout << std::endl;
 	}
 	void Joueur::addPions(Couleur c, TypePion tp){
-		for (int i(0);i < (int)pions.size();i++){
+		for (int i(0);i < 20;i++){
 			Pion p(1,nullptr,c,tp);
 			pions.at(i) =p;
 		}
+		std::cout << pions.at(0).getColor();
 		}
 
     Joueur::~Joueur(){

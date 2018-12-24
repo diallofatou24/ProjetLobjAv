@@ -10,16 +10,21 @@ using namespace std;
 
 class JeuDameNationnale{
 	private :
-	Joueur *joueur1;
-	Joueur *joueur2;
+	
 	std::vector<std::vector<Case> > cases;
-	int choixPion;
+	//int choixPion=0;
+	  //static Couleur colChoisi;
 
 
 	public :
+	Joueur* joueur1;
+	Joueur* joueur2;
+	
 	JeuDameNationnale();
+	JeuDameNationnale(Couleur, Couleur);
+
 	//fonction qui instanci un joueur
-	static Joueur * createJoueur(int id, int nbp);
+Joueur * createJoueur(int id, int nbp,Couleur colChoisi);
 	//fonction de creation des cases
 	void createCases(int hauteur, int largeur);
 
@@ -31,32 +36,43 @@ class JeuDameNationnale{
 
 
 };
+
+
+//JeuDameNationnale::colChoisi{Couleur::null}
 JeuDameNationnale::JeuDameNationnale(){}
-Joueur* JeuDameNationnale::createJoueur(int id, int nbPions){
+JeuDameNationnale::JeuDameNationnale(Couleur c1, Couleur c2):joueur1{createJoueur(1,20, c1)}, joueur2{createJoueur(2,20, c2)}{}
+Joueur* JeuDameNationnale::createJoueur(int id, int nbPions, Couleur colChoisi){
 	string n;
+	cout << "creation du joueur: " << to_string(id) << endl;
 	cout << "Votre nom: " ;
 	cin >> n;
-	Couleur c;
 	Joueur *j = new Joueur(id, n, nbPions);
-	int couleur;
-	
+		
+		j->addPions(colChoisi,TypePion::pion);
+		return j;
+	}
 
-		cout <<"choix de la couleur de pion:" << endl;
+		
+
+	Couleur lectureCouleur(){
+		int couleur;
+		Couleur c;
+		cout <<"choix de la couleur de pion pour joueur1:" << endl;
 		do{
 		cout << "Tapez 1 pour le blanc et 2 pour le noir: ";
 		cin >> couleur;
 
 	}while(couleur !=1 && couleur !=2);
 		if(couleur ==1){
-			c= Couleur::blanc;
-		}else if(couleur ==2){
+				c=Couleur::blanc;
+		
+		}else {
 			c= Couleur::noir;
-			cout << "je suis nor " << endl;
+	
 		}
-		j->addPions(c,TypePion::pion);
-		return j;
-
+		return c;
 	}
+
 	void JeuDameNationnale::affichePlateau(){}
 
 	void JeuDameNationnale::placePion(Joueur *jj, int nbligne,int position){
@@ -87,10 +103,26 @@ Joueur* JeuDameNationnale::createJoueur(int id, int nbPions){
 	void JeuDameNationnale::createCases(int hauteur, int largeur){}
 
 	int main(int argc, char const *argv[])
-	{
+
+	{ //int *colChoisi=0;
+		Couleur c=lectureCouleur();
+		Couleur c2= (c==Couleur::noir)?Couleur::blanc:Couleur::noir;
 		
-		Joueur * j = JeuDameNationnale::createJoueur(1,20);
+		JeuDameNationnale jdn(c,c2);
+		/*Joueur * j2=jdn.createJoueur(2,20,1, Couleur::blanc);
+		
+	 j2->affichePions();
+
+		Couleur c(Couleur::noir);
+		 Joueur *j =jdn.createJoueur(1,20,0, c);
+		 //string s =(c==Couleur::=noir)?"noir":"autre";
+		 //cout << " ddd " << s << endl;
 		j->affichePions();
+
+		*/
+		jdn.joueur2->affichePions();
+		jdn.joueur1->affichePions();
+
 		return 0;
 	}
 
