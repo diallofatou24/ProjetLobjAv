@@ -7,8 +7,9 @@
 //using namespace std;
 
 Pion::Pion():valeur{0}, casePion{nullptr}, color{Couleur::null},type{TypePion::null}{}
-
 Pion::Pion(int val, Case* c, Couleur col,TypePion typ): valeur{val}, casePion{c}, color{col}, type{typ} {}
+
+Pion::Pion(int val, Case& c, Couleur col,TypePion typ): valeur{val}, casePion{&c}, color{col}, type{typ} {}
 Pion::~Pion(){}
 int Pion::getValeur(){
 	return valeur;

@@ -17,8 +17,8 @@ Joueur::Joueur():id{0},nom{"Joueur1"},score{0}{}
 	int Joueur::getScore(){
 		return score;
 	}
-	void Joueur::setCasePions(int idx, Case *c){
-		pions.at(idx).setCasePion(c);
+	void Joueur::setCasePions(int idx, Case& c){
+		pions.at(idx).setCasePion(&c);
 	}
 	void Joueur::setTypePions(int idx, TypePion tp){
 		pions.at(idx).setType(tp);
@@ -33,9 +33,12 @@ Joueur::Joueur():id{0},nom{"Joueur1"},score{0}{}
 		}
 		std::cout << std::endl;
 	}
-	void Joueur::addPions(Pion *p){
-		pions.push_back(*(p));
-	}
+	void Joueur::addPions(Couleur c, TypePion tp){
+		for (int i(0);i < (int)pions.size();i++){
+			Pion p(1,nullptr,c,tp);
+			pions.at(i) =p;
+		}
+		}
 
     Joueur::~Joueur(){
 		pions.clear();

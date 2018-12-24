@@ -16,11 +16,11 @@ public:
 	std::string getNom();
 	std::vector<Pion> getPions();
 	int getScore();
-	void setCasePions(int idx, Case *c);
+	void setCasePions(int idx, Case& c);
 	void setTypePions(int idx, TypePion tp);
 	void setScore(int c);
 void affichePions()const;
-void addPions(Pion *p);
+void addPions(Couleur c, TypePion p);
 	virtual ~Joueur();
 	
 };

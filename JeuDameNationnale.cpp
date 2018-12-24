@@ -24,7 +24,7 @@ class JeuDameNationnale{
 	void createCases(int hauteur, int largeur);
 
 	//placement des pions au debut
-	void placePion(Joueur j);
+	void placePion(Joueur *j, int nbligne,int position);
 
 	void affichePlateau();
 
@@ -59,13 +59,13 @@ Joueur* JeuDameNationnale::createJoueur(int id, int nbPions){
 	}
 	void JeuDameNationnale::affichePlateau(){}
 
-	void JeuDameNationnale::placePion(Joueur j, int nbligne,int position){
+	void JeuDameNationnale::placePion(Joueur *jj, int nbligne,int position){
 		int k(0);
 		if(position==0){
 			for(int i(0);i< (int)cases.size();i++){
 				for(int j(0); j<(int)cases[i].size();j++){
 					if(cases[i][j].getCouleur()==Couleur::noir){
-						j.setCasePions(k,cases[i][j]);
+						jj->setCasePions(k,cases[i][j]);
 						k++;
 					}
 				}
@@ -75,7 +75,7 @@ Joueur* JeuDameNationnale::createJoueur(int id, int nbPions){
 			for(int i(position);i>position-4;i--){
 				for(int j(0); j<(int)cases[i].size();j++){
 					if(cases[i][j].getCouleur()==Couleur::noir){
-						j.setCasePions(k,cases[i][j]);
+						jj->setCasePions(k,cases[i][j]);
 						k++;
 					}
 				}
