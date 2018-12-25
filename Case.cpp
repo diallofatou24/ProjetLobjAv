@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Case::Case(int x, int y, Couleur c, std::string val):positionX{x},positionY{}, couleur{c},etat{false},valeur{val}{
+Case::Case(int x, int y, Couleur c, std::string val):positionX{x},positionY{y}, couleur{c},etat{false},valeur{val}{
 	
 
 }

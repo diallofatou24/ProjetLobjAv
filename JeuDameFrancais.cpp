@@ -112,3 +112,66 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 		
 
 	}
+
+std::vector<Case> JeuDameFrancais::diagonale(Case c){
+	int px(c.getPositionX());
+	int py(c.getPositionY());
+	int i (px);
+	int j(py);
+	std::vector<Case> v(20);
+	int k(0);
+	//cout << i << " j" << j << endl;
+	//vert le haut cote gauche
+	while(i>0 && j> 0){
+		i =i-1;
+		j=j-1;
+		v.at(k) = cases.at(i).at(j);
+		k++;
+	}
+	int sizej = cases.at(0).size();
+	//vert le haut driote
+	   i =px;
+	  j= py;
+	  while(i>0 && j<sizej-1){
+		i =i-1;
+		j=j+1;
+		v.at(k) = cases.at(i).at(j);
+		k++;
+	}
+	//vers le bas gauche
+	int sizei = cases.size();
+	i =px;
+	  j= py;
+	  while(i<sizei-1 && j>0){
+		i =i+1;
+		j=j-1;
+		v.at(k) = cases.at(i).at(j);
+		k++;
+	}
+	//vers le bas droite
+	i =px;
+	  j= py;
+	  while(i<sizei-1 && j<sizej-1){
+		i =i+1;
+		j=j+1;
+		v.at(k) = cases.at(i).at(j);
+		k++;
+	}
+	v.resize(k);
+	return v;
+
+}
+std::vector<std::vector<Case> > JeuDameFrancais::getCases(){
+	return cases;
+}
+void JeuDameFrancais::aff(){
+	for (int i = 0; i < 10; ++i){
+		for (int j = 0; j < 10; ++j)
+		{
+			/* code */
+			cout <<  "X=" << cases.at(i).at(j).getPositionX() << " Y=" << cases.at(i).at(j).getPositionY() << " " ;
+		}
+		cout << endl;
+	}
+	
+}

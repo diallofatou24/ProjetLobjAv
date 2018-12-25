@@ -29,12 +29,14 @@ class JeuDameFrancais{
 Joueur * createJoueur(int id, int nbp,Couleur colChoisi);
 	//fonction de creation des cases
 	void createCases(int hauteur, int largeur);
+	std::vector<std::vector<Case> > getCases();
 
 	//placement des pions au debut
 	void placePion(Joueur *j, int nbligne,int position);
 
 	void affichePlateau();
-
+	std::vector<Case> diagonale(Case c);
+void aff();
 
 
 };

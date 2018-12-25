@@ -19,6 +19,8 @@
 		JeuDameFrancais jdn(c,c2);
 		jdn.createCases(10,10);
 			jdn.affichePlateau();
+	cout << "tes" << endl << endl;;
+			jdn.aff();
 		cout << "J1" << endl;
 
 		jdn.placePion(jdn.joueur1, 4,0);
@@ -29,6 +31,10 @@
 
 		jdn.placePion(jdn.joueur2, 4,9);
 		jdn.affichePlateau();
+		std::vector<Case> v = jdn.diagonale(jdn.getCases().at(6).at(5));
+		for(int i(0);i< (int)v.size();i++){
+			cout << " cases " << to_string(i) << "X =" << to_string( v.at(i).getPositionX() )<< " Y=" << to_string(v.at(i).getPositionY())  << endl;
+		}
 
 		return 0;
 	}
