@@ -3,7 +3,8 @@
 #include <iostream>
 using namespace std;
 
-Case::Case(int x, int y, Couleur c):positionX{x},positionY{}, couleur{c},etat{false}{
+Case::Case(int x, int y, Couleur c, std::string val):positionX{x},positionY{}, couleur{c},etat{false},valeur{val}{
+	
 
 }
 Case::Case(){
@@ -13,30 +14,10 @@ Case::~Case(){
 
 }
 void Case::affiche()const{
-	/*std::string e = (etat==true)?"true":"false";
-	std::cout<< "px: " << std::to_string(positionX) << " py: "
-	 << std::to_string(positionY) << " couleur: " << couleur << " etat: " << e << std::endl;*/
-
-	 if(etat==false){
-
-
-	 if( couleur == Couleur::blanc){
-	 cout<<"- "; }
-
-	 else {
-
-	 cout<<"X ";
+	
+std::cout << valeur ;
 	 }
 
-	 }else{
- cout<<"J ";
-
-
-	 }
-
-
-
-}
 void Case::setEtat(bool b){
 	etat = b;
 }
@@ -51,4 +32,11 @@ int Case::getPositionY(){
 }
 bool Case::getEtat(){
 	return etat;
+}
+void Case::setValEtat(std::string v , bool et){
+	valeur= v;
+	etat = et;
+}
+void Case::setValeur(std::string v){
+	valeur = v;
 }

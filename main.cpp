@@ -7,6 +7,8 @@
 #include "TypePion.hpp"
 #include "JeuDameFrancais.hpp"
 
+ using namespace std;
+
 
 	int main(int argc, char const *argv[])
 
@@ -15,19 +17,18 @@
 		Couleur c2= (c==Couleur::noir)?Couleur::blanc:Couleur::noir;
 
 		JeuDameFrancais jdn(c,c2);
-		/*Joueur * j2=jdn.createJoueur(2,20,1, Couleur::blanc);
+		jdn.createCases(10,10);
+			jdn.affichePlateau();
+		cout << "J1" << endl;
 
-	 j2->affichePions();
+		jdn.placePion(jdn.joueur1, 4,0);
+		jdn.affichePlateau();
 
-		Couleur c(Couleur::noir);
-		 Joueur *j =jdn.createJoueur(1,20,0, c);
-		 //string s =(c==Couleur::=noir)?"noir":"autre";
-		 //cout << " ddd " << s << endl;
-		j->affichePions();
 
-		*/
-		jdn.joueur2->affichePions();
-		jdn.joueur1->affichePions();
+			cout << "J2" << endl;
+
+		jdn.placePion(jdn.joueur2, 4,9);
+		jdn.affichePlateau();
 
 		return 0;
 	}

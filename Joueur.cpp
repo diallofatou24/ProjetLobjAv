@@ -38,7 +38,7 @@ Joueur::Joueur():id{0},nom{"Joueur1"},score{0}{}
 			Pion p(1,nullptr,c,tp);
 			pions.at(i) =p;
 		}
-		std::cout << pions.at(0).getColor();
+		//std::cout << pions.at(0).getColor();
 		}
 
     Joueur::~Joueur(){

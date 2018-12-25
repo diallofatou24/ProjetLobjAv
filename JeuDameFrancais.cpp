@@ -44,25 +44,45 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 		return c;
 	}
 
-	void JeuDameFrancais::affichePlateau(){}
+	void JeuDameFrancais::affichePlateau(){
+		for(int i(0);i<cases.size();i++){
+			cout << i << " ";
+			for(int j(0);j<(int)cases[i].size();j++){
+				cases.at(i).at(j).affiche();
+				cout << " ";
+			}
+			std::cout << endl;
+		}
+		cout << "   0 1  2  3  4  5  6  7  8  9" << endl;
+	}
 
 	void JeuDameFrancais::placePion(Joueur *jj, int nbligne,int position){
 		int k(0);
 		if(position==0){
-			for(int i(0);i< (int)cases.size();i++){
-				for(int j(0); j<(int)cases[i].size();j++){
-					if(cases[i][j].getCouleur()==Couleur::noir){
-						jj->setCasePions(k,cases[i][j]);
+			std::cout << "cases taille " <<  cases.size() << "cases[i] taille " << cases[0].size() << endl;
+			for(int i(0);i< nbligne;i++){
+				for(int j(0); j< (int)cases.at(i).size();j++){
+					if(cases.at(i).at(j).getCouleur()==Couleur::noir){
+						
+						jj->setCasePions(k,cases.at(i).at(j));
+					    //cases.at(i).at(j).setEtat(true);
+					    cases.at(i).at(j).setValEtat("J"+ std::to_string(jj->getId()),true);
+						//cases.at(i).at(j).setValeur(("J"+ std::to_string(jj->getId())));//
 						k++;
 					}
 				}
 
 			}
 		}else{
-			for(int i(position);i>position-4;i--){
-				for(int j(0); j<(int)cases[i].size();j++){
-					if(cases[i][j].getCouleur()==Couleur::noir){
-						jj->setCasePions(k,cases[i][j]);
+			k= 0;
+
+			for(int i(position);i>(position-nbligne);i--){
+				for(int j(0); j<(int)cases.at(i).size();j++){
+					if(cases.at(i).at(j).getCouleur()==Couleur::noir){
+						jj->setCasePions(k,cases.at(i).at(j));
+						 cases.at(i).at(j).setValEtat("J"+ std::to_string(jj->getId()),true);
+						/*cases.at(i).at(j).setEtat(true);
+						cases.at(i).at(j).setValeur(("J"+ std::to_string(jj->getId())));*/
 						k++;
 					}
 				}
@@ -71,4 +91,24 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 
 		}
 	}
-	void JeuDameFrancais::createCases(int hauteur, int largeur){}
+	void JeuDameFrancais::createCases(int hauteur, int largeur){
+		cases.resize(hauteur);
+		for(int i(0);i< (int)cases.size();i++)
+			cases[i].resize(largeur);
+		for(int i(0);i<(int)cases.size();i++){
+			for(int j(0);j< (int) cases[i].size() ;j++){
+				if((i+j)%2 ==0){
+					Case c(i,j,Couleur::blanc,"--");
+					cases[i][j] = c;
+				}else{
+					Case c(i,j,Couleur::noir,"XX");
+					cases[i][j] = c;
+
+				}
+
+			}
+		}
+
+		
+
+	}

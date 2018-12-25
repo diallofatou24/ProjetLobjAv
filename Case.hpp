@@ -12,18 +12,21 @@ private:
 	int positionX;
 	int positionY;
 	Couleur couleur;
+		bool etat;
+	std::string valeur;
 
-	bool etat;
 public:
      Case();
-	Case(int px, int py, Couleur c);
+	Case(int px, int py, Couleur c, std::string);
 	virtual ~Case();
 	void affiche()const;
 	void setEtat(bool e);
+	void setValeur(std::string);
 	int getPositionX();
 	int getPositionY();
 	Couleur getCouleur();
 	bool getEtat();
+	void setValEtat(std::string v , bool et);
 };
 
 #endif
