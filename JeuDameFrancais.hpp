@@ -10,18 +10,29 @@
 #include "TypePion.hpp"
 class JeuDameFrancais{
 	private :
-
+static int tour;
+static int nb_tour;
 	std::vector<std::vector<Case> > cases;
+
+	Joueur* joueur1;
+	Joueur* joueur2;
 	//int choixPion=0;
 	  //static Couleur colChoisi;
 
 
 	public :
-	Joueur* joueur1;
-	Joueur* joueur2;
+
 
 	JeuDameFrancais();
 	JeuDameFrancais(Couleur, Couleur);
+
+
+    Joueur* getjoueur1();
+    Joueur* getjoueur2();
+
+    static int gettour();
+    static void setnbtour(int i);
+      static int getnbtour();
 
 	static Couleur lectureCouleur();
 
@@ -34,6 +45,20 @@ Joueur * createJoueur(int id, int nbp,Couleur colChoisi);
 	void placePion(Joueur *j, int nbligne,int position);
 
 	void affichePlateau();
+
+	void debut_jeu();
+
+
+Pion* verif_pion_rafle(Joueur* j,std::vector<Case>& v);
+void mise_jour_rafle_plateau(Pion* p,Case& c);
+
+bool lecture_de_coup(Joueur* j,std::string t);
+
+
+
+bool verif_coup(std::string coup);
+
+int Split(std::vector<std::string>& vecteur, std::string chaine, char separateur);
 
 
 

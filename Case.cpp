@@ -3,8 +3,8 @@
 #include <iostream>
 using namespace std;
 
-Case::Case(int x, int y, Couleur c, std::string val):positionX{x},positionY{}, couleur{c},etat{false},valeur{val}{
-	
+Case::Case(int x, int y, Couleur c, std::string val):positionX{x},positionY{y}, couleur{c},etat{false},valeur{val}{
+
 
 }
 Case::Case(){
@@ -14,7 +14,7 @@ Case::~Case(){
 
 }
 void Case::affiche()const{
-	
+
 std::cout << valeur ;
 	 }
 
@@ -40,3 +40,15 @@ void Case::setValEtat(std::string v , bool et){
 void Case::setValeur(std::string v){
 	valeur = v;
 }
+
+void Case::setPositionX(int x){
+
+positionX=x;
+
+}
+
+void Case::setPositionY(int y){
+
+positionY=y;
+
+    }

@@ -24,6 +24,8 @@ public:
 	void setValeur(std::string);
 	int getPositionX();
 	int getPositionY();
+    void setPositionX(int x);
+    void setPositionY(int y);
 	Couleur getCouleur();
 	bool getEtat();
 	void setValEtat(std::string v , bool et);
