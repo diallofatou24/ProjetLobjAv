@@ -13,9 +13,10 @@
 using namespace std;
 int JeuDameFrancais::tour=1;
 int JeuDameFrancais::nb_tour=0;
+bool JeuDameFrancais::abondon=false;
 //JeuDameNationnale::colChoisi{Couleur::null}
 JeuDameFrancais::JeuDameFrancais(){}
-JeuDameFrancais::JeuDameFrancais(Couleur c1, Couleur c2):joueur1{createJoueur(1,20, c1)}, joueur2{createJoueur(2,20, c2)}{
+JeuDameFrancais::JeuDameFrancais(Couleur c1, Couleur c2,int nbpion):joueur1{createJoueur(1,nbpion, c1)}, joueur2{createJoueur(2,nbpion, c2)}{
 if(c1==Couleur::blanc){tour=1;}else{tour=2;}
 }
 
@@ -88,7 +89,13 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 			}
 			std::cout << endl;
 		}
-		cout << "   0 1  2  3  4  5  6  7  8  9" << endl;
+cout << "   ";
+		for(int i(0);i<cases.size();i++){
+
+			cout<<i<<"  ";
+		}
+		cout <<endl;
+
 	}
 
 	void JeuDameFrancais::placePion(Joueur *jj, int nbligne,int position){
@@ -101,7 +108,7 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 
 						jj->setCasePions(k,cases[i][j]);
 					    //cases.at(i).at(j).setEtat(true);
-					    cases.at(i).at(j).setValEtat("J"+ std::to_string(jj->getId()),true);
+					    cases.at(i).at(j).setValEtat("P"+ std::to_string(jj->getId()),true);
 						//cases.at(i).at(j).setValeur(("J"+ std::to_string(jj->getId())));//
 						k++;
 					}
@@ -115,7 +122,7 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 				for(int j(0); j<(int)cases.at(i).size();j++){
 					if(cases.at(i).at(j).getCouleur()==Couleur::noir){
 						jj->setCasePions(k,cases.at(i).at(j));
-						 cases.at(i).at(j).setValEtat("J"+ std::to_string(jj->getId()),true);
+						 cases.at(i).at(j).setValEtat("P"+ std::to_string(jj->getId()),true);
 						/*cases.at(i).at(j).setEtat(true);
 						cases.at(i).at(j).setValeur(("J"+ std::to_string(jj->getId())));*/
 						k++;
@@ -148,30 +155,36 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 
 	}
 
+//-*****************************************************************************************************************
+void JeuDameFrancais::debut_jeu(){
 
-	void JeuDameFrancais::debut_jeu(){
 
-
-	cout<<"-------------Debut de partie---------"<<endl;
+cout<<"-------------Debut de partie---------"<<endl;
 cout<<"----------------------"<<endl;
 string coup;
 cin.ignore();
 
-while(nb_tour<25){
+while(!fin_jeu()){
+affichePlateau();
+cout<<"TOUR DU JOUEUR : "<<tour;
+if(tour==1){
+cout<<" SCORE: "<<joueur1->getScore()<<"  NOMBRE DE PIECES: "<<joueur1->getPions().size()<<" A: ABONDONNER N: PASSER VOTRE TOUR H: AIDE"<<endl;
+}else{
+cout<<" SCORE: "<<joueur2->getScore()<< " NOMBRE DE PIECES: "<<joueur2->getPions().size()<<" A: ABONDONNER N: PASSER VOTRE TOUR H: AIDE"<<endl;
+}
 
-cout<<"Tour du joueur "<<tour<<endl;
 cout<<"veuillez saisir un coup en utilisant la notation"<<endl;
 
 
 getline(cin,coup);
-cout << coup;
+//cout << coup;
 
 if(!verif_coup(coup)){
 
 
 do{
 
-cout<<"veuillez saisir un coup correct"<<endl;
+cout<<"NOTATION INCORRECTE"<<endl;
 
 getline(cin,coup);
 
@@ -185,20 +198,44 @@ getline(cin,coup);
 if (tour==1){
 
 
-while(!lecture_de_coup(joueur1,coup)){
-cout<<"veuillez resaisir un coup correct"<<endl;
+while(!lecture_de_coup(*joueur1,coup)){
+cout<<"------------------------------------RECOMMENCER"<<endl;
+cout<<"JOUEUR1 "<<" SCORE : "<<joueur1->getScore()<<" NOMBRE DE PIECES: "<<joueur1->getPions().size()<<" A: ABONDONNER N: PASSER VOTRE TOUR H: AIDE"<<endl;
 getline(cin,coup);
+if(!verif_coup(coup)){
+do{
+
+cout<<"NOTATION INCORRECTE"<<endl;
+
+getline(cin,coup);
+
+}while(!verif_coup(coup));
+
+}
 }
 tour=2;
-affichePlateau();
-cout<<"jjjjjjjjj"<<nb_tour<<endl;
+
+
+
 }else{
-while(!lecture_de_coup(joueur2,coup)){
-cout<<"veuillez resaisir un coup correct"<<endl;
+while(!lecture_de_coup(*joueur2,coup)){
+cout<<"------------------------------------RECOMMENCER"<<endl;
+cout<<"JOUEUR2 "<<" SCORE : "<<joueur2->getScore()<<" NOMBRE DE PIECES: "<<joueur1->getPions().size()<<" A: ABONDONNER N: PASSER VOTRE TOUR H: AIDE"<<endl;
 getline(cin,coup);
+if(!verif_coup(coup)){
+do{
+
+cout<<"NOTATION INCORRECTE"<<endl;
+
+getline(cin,coup);
+
+}while(!verif_coup(coup));
+
 }
 
-affichePlateau();
+}
+
+
 tour=1;
 }
 
@@ -206,13 +243,18 @@ tour=1;
 
 	}//fin de jeu
 
+//-**************************************************************************************************************************-----------------------
 
-bool JeuDameFrancais::lecture_de_coup(Joueur* j,string c){
+bool JeuDameFrancais::lecture_de_coup(Joueur& j,string c){
 
 vector<string> VecStr;
 
 Case* case_depart;
 vector<Pion> pion_a_detruire;
+Pion* p;
+int taille = cases.size();
+
+
 
 //----------------------------------mettre le coup dans un tableau de char------------------------
 
@@ -222,76 +264,122 @@ int nbTabl = Split(VecStr, c, ' ');
 // testéééééééééééééééééééééééééééééééééééééé
 	if(VecStr[i]=="-"){
 
-       Pion* p(j->verif_pion(VecStr[i-1]));
+bool t=j.deplacement(VecStr[i-1],VecStr[i+1],cases,true);
+if(t){
+nb_tour=0;
+p=j.verif_pion(VecStr[i-1]);
+int n = std::stoi(VecStr[i+1]);
 
 
-           int n = std::stoi(VecStr[i+1]);
+p->mise_jour_rafle_plateau(cases[n/taille][n%taille],j.getId(),cases.size());
+}
 
-return j->deplacement(p,cases[n/10][n%10]);
+
+return t;
 
 	}//fin du ------ tiret
 
 
 
 else if(VecStr[i]=="*"){
+//cout<<"je passe laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"<<VecStr[i-1]<<"jjjjj"<<VecStr[i+1]<<endl;
 
 if(i==1){
-int t = std::stoi(VecStr[0]);
-case_depart=&cases[t/10][t%10];
+int t= std::stoi(VecStr[0]);
+//cout<<"deparrrrrt"<<t<<endl;
+case_depart=&cases[t/taille][t%taille];
 }
-
-
-
-Pion* p(j->verif_pion(VecStr[i-1]));
-int n = std::stoi(VecStr[i+1]);
-vector<Case> list_pion_adverse =j->rafle(p,cases[n/10][n%10],&cases);
-
-
-cout<<"la liste est la"<<list_pion_adverse.size()<<endl;
-
-Pion* p_adverse;
+Pion pion_adverse;
 
 if(tour==1){
-Pion* p_adverse=verif_pion_rafle(joueur2,list_pion_adverse);
 
-}else{Pion* p_adverse(verif_pion_rafle(joueur1,list_pion_adverse));
-}
-Pion* pion_rafle_joueur(verif_pion_rafle(j,list_pion_adverse));
+if(j.rafle(VecStr[i-1],VecStr[i+1],cases,*joueur2,pion_adverse,true)){
 
-
-if(p_adverse!=0 && pion_rafle_joueur==0){
-cout<<"ladversaire possede rafle bonne"<<endl;
-pion_a_detruire.push_back(*p_adverse);
-cout<<"pion ajoutééé a la liste de destruction"<<endl;
-
-
-mise_jour_rafle_plateau(p,cases[n/10][n%10]);
-
+pion_a_detruire.push_back(pion_adverse);
+}else{return false;}
 }else{
-mise_jour_rafle_plateau(p,*case_depart);
 
-cout<<"ladversaire possede pas"<<endl;}
+if(j.rafle(VecStr[i-1],VecStr[i+1],cases,*joueur1,pion_adverse,true)){
+pion_a_detruire.push_back(pion_adverse);
+}else{return false;}
+}
+
+//cout <<"liste des pion a detruire"<<pion_a_detruire.size()<<endl;
+if(pion_a_detruire.size()==0){
+p=j.verif_pion(VecStr[i-1]);
+
+p->mise_jour_rafle_plateau(*case_depart,j.getId(),cases.size());
 
 
-
+return false;}
+//JeuDameFrancais::affichePlateau();
 
 	}//fin du ******************* rafle
+
 else if(VecStr[i]=="+"){
+
 int n_pion_rafle = std::stoi(VecStr[i+1]);
+
 if(pion_a_detruire.size()==n_pion_rafle){
 
 for(int i=0;i<pion_a_detruire.size();i++){
+//cout<<"jeai detruis"<<pion_a_detruire[i].getCasePion()->getPositionX()<<"yyyyy"<<
+//pion_a_detruire[i].getCasePion()->getPositionY()<<endl;
 
-//methode destructionnn des pions du joueur
+if(tour==1){
+//cout<< "je detrui le joueur 2222222"<<n_pion_rafle<<endl;
+joueur2->destruction_pion(pion_a_detruire);
+
+joueur1->setScore(pion_a_detruire.size());
+nb_tour=0;
+cout<<"------------------- Bien JOUER "<<"JOUEUR "<<tour<<" -------------------"<<" SCORE :"<<joueur1->getScore()<<endl;
+return true;
+}else{
+joueur1->destruction_pion(pion_a_detruire);
+joueur2->setScore(pion_a_detruire.size());
+cout<<"------------------- Bien JOUER "<<"JOUEUR "<<tour<<" -------------------"<<" SCORE :"<<joueur2->getScore()<<endl;
+nb_tour=0;
+return true;
+}
+
+
+
 }
 
 }else{
+
+//cout<< "mise a jour apres +++++++++"<<case_depart->getPositionX()<<"yy"<<case_depart->getPositionY()<<endl;
+
+cout <<"le nombre de pion à rafler est invalide"<<endl;
+
+p=j.verif_pion(VecStr[i-1]);
+
+p->mise_jour_rafle_plateau(*case_depart,j.getId(),cases.size());
+//JeuDameFrancais::affichePlateau();
+return false;
 
 // retouur a la case de depard
 
 }
 
 
+}else if(VecStr[0]=="n"||VecStr[0]=="N"){
+
+nb_tour++;
+return true;
+}else if(VecStr[0]=="A"|| VecStr[0]=="a"){
+abondon=true;
+return true;
+}else if(VecStr[0]=="H"|| VecStr[0]=="h"){
+if(tour==1){
+bool t=j.liste_coup_valide(cases,*joueur2,true);
+
+
+}
+else if(tour==2){
+j.liste_coup_valide(cases,*joueur1,true);
+}
+return false;
 }
 
 	}
@@ -299,80 +387,40 @@ for(int i=0;i<pion_a_detruire.size();i++){
 //----------------------------------traitement du coup dans le jeu------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-
-  //std::cout <<"convertion"<< n/10 << n%10 <<std::endl;
-
-
-
-
 	}
 
 
-void JeuDameFrancais::mise_jour_rafle_plateau(Pion* p,Case& c){
-p->getCasePion()->setValEtat("XX",false);
-c.setValEtat("J"+ std::to_string(tour),true);
-p->setCasePion(&c);
-
-	}
+//µ************************************************************************************************************************************
 
 
-
-	// testéééééééééééééééééééééééééééééééééééééé
-	Pion* JeuDameFrancais::verif_pion_rafle(Joueur* jj,vector<Case>& v){
-
-
-for(int i=0 ;i<jj->getPions().size();i++){
-
-for(int j=0;j<v.size();j++){
-
-if(jj->getPions()[i].getCasePion()->getPositionX()==v[j].getPositionX() &&
-jj->getPions()[i].getCasePion()->getPositionY()==v[j].getPositionY()){
-
-return &jj->getPions()[i];
-
-
-}
-
-}
-
-}
-
-return nullptr;
-
-	}
+//**********************************************************************************************************************
 
 // testéééééééééééééééééééééééééééééééééééééé
 bool JeuDameFrancais::verif_coup(string coup){
 
 
 
-regex pattern_rafle { "[0-9]{2}(\\s[\\*]\\s[0-9]{2})+(\\s[\\+][0-9])" }; // on recherche le motif "abc"
+regex pattern_rafle { "[0-9]{2}(\\s[\\*]\\s[0-9]{2})+(\\s[\\+]\\s[0-9])" }; // on recherche le motif "abc"
 
 regex pattern_dep { "[0-9]{2}(\\s[\\-]\\s[0-9]{2})" };
+regex pattern_not_coup { "[a-z]" };
     //std::string target { "13 - 12 - 45+1"};
 
     if(regex_match(coup, pattern_dep)){
     return true;
     }else if(regex_match(coup, pattern_rafle)){
     return true;
-    }else{return false;}
+    }else if(regex_match(coup,pattern_not_coup)){
+      return true;
+    }else{
+    return false;}
 
 //    std::cout << std::boolalpha << result << std::endl;
 
 };
 
+//*********************************************************************************************************************
 
-// testéééééééééééééééééééééééééééééééééééééé
 int JeuDameFrancais::Split(vector<string>& vecteur, string chaine, char separateur)
 {
 	vecteur.clear();
@@ -393,6 +441,43 @@ int JeuDameFrancais::Split(vector<string>& vecteur, string chaine, char separate
 	vecteur.push_back(chaine);
 
 	return vecteur.size();
+}
+
+
+
+
+bool JeuDameFrancais::fin_jeu(){
+
+if(nb_tour>25){
+cout<<"---------------------------FIN DE PARTIE-----------------EGALITE : 25 coup sans prise ni deplacement-----------"<<endl;
+return true;
+}else if(joueur1->getPions().size()==0){
+cout<<"---------------------FIN DE PARTIE-------------LE JOUEUR :"<<joueur2->getId()<<" GAGNE!!!!!!!!!!! ---------"<<endl;
+return true;
+}else if(joueur2->getPions().size()==0){
+cout<<"---------------------FIN DE PARTIE-------------LE JOUEUR :"<<joueur1->getId()<<" GAGNE!!!!!!!!!!! ---------"<<endl;
+return true;
+}else if(abondon){
+if(tour==2){
+
+cout<<"---------------------FIN DE PARTIE-------------LE JOUEUR :"<<joueur2->getId()<<" GAGNE!!!!!!!!!!! ---------"<<endl;
+return true;
+}else if(tour==1){
+cout<<"---------------------FIN DE PARTIE-------------LE JOUEUR :"<<joueur1->getId()<<" GAGNE!!!!!!!!!!! ---------"<<endl;
+return true;
+}
+
+}else if(!joueur1->liste_coup_valide(cases,*joueur2,false) && !joueur2->liste_coup_valide(cases,*joueur1,false) ){
+cout<<"---------------------------FIN DE PARTIE-----------------EGALITE------ AUCUN COUP A JOUER------"<<endl;
+return true;}
+/*else if(!joueur1->liste_coup_valide(cases,*joueur2,false)){
+cout<<"---------------------FIN DE PARTIE-------------LE JOUEUR :"<<joueur2->getId()<<" GAGNE!!!!!!!!!!! ---------"<<endl;
+}
+else if(!joueur2->liste_coup_valide(cases,*joueur1,false)){
+cout<<"---------------------FIN DE PARTIE-------------LE JOUEUR :"<<joueur1->getId()<<" GAGNE!!!!!!!!!!! ---------"<<endl;
+}*/else{return false;}
+
+
 }
 
 
