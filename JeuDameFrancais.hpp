@@ -35,6 +35,7 @@ static bool abondon;
 
     static int gettour();
     static void setnbtour(int i);
+	  static void settour(int i);
       static int getnbtour();
 
 	static Couleur lectureCouleur();
