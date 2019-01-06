@@ -25,6 +25,8 @@ static bool abondon;
 
 
 	JeuDameFrancais();
+	JeuDameFrancais(Couleur, Couleur);
+       JeuDameFrancais(Joueur* j1, Joueur*j2, std::vector<std::vector < Case > > v);
 	JeuDameFrancais(Couleur, Couleur,int nbpion);
 
 
