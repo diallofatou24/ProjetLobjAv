@@ -25,6 +25,7 @@ void setValeur(int v);
 void setCasePion(Case * c);
 void setColor(Couleur c);
 void setType(TypePion p);
+  void aff()const;
 bool deplacement_valid(Case& c,int id_joueur);
 bool deplacement_de_pion(Case& c,int id_joueur,int taille_damier,bool verif);
 bool deplacement_de_dame(Case& c,std::vector<std::vector<Case>>* cases,int id_joueur,bool verif);
