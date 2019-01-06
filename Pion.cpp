@@ -424,7 +424,3 @@ int sizej = plateau.at(0).size();
 	return v;
 
 }
-
-
-
-
