@@ -32,6 +32,7 @@ static bool abondon;
 
     Joueur* getjoueur1();
     Joueur* getjoueur2();
+     std::vector<std::vector<Case> > getCases();
 
     static int gettour();
     static void setnbtour(int i);

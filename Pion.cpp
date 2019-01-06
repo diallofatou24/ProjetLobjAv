@@ -310,7 +310,7 @@ bool Pion::trouver_pion_adverse(vector<Case>& list_diagonal,Case& c,bool haut,bo
 bool bas){
 
 //cout <<"jeface touuuut"<<c.getPositionX()<<c.getPositionY()<<endl;
-for(int i=0;i<list_diagonal.size();i++){
+for(int i=0;i<(int)list_diagonal.size();i++){
 
 //cout <<"liste"<<list_diagonal[i].getPositionX()<<list_diagonal[i].getPositionY()<<endl;
 
@@ -320,7 +320,7 @@ if(list_diagonal[i].getPositionX()==c.getPositionX() && list_diagonal[i].getPosi
 list_diagonal.erase(list_diagonal.begin()+i);
 
 if(haut){
-for(int i=0;i<list_diagonal.size();i++){
+for(int i=0;i<(int)list_diagonal.size();i++){
 if(list_diagonal[i].getPositionX()<c.getPositionX()){
 list_diagonal.erase(list_diagonal.begin()+i);
 i--;
@@ -329,12 +329,12 @@ i--;
 }
 }else if(bas){
 
-for(int i=0;i<list_diagonal.size();i++){
+for(int i=0;i<(int)list_diagonal.size();i++){
 //cout<<"element"<<list_diagonal[i].getPositionX()<<"yyy"<<list_diagonal[i].getPositionY()<<endl;
 if(list_diagonal[i].getPositionX()>c.getPositionX()){
 list_diagonal.erase(list_diagonal.begin()+i);
 i--;
-//cout<<"jeface le baaaa"<<list_diagonal.size()<<endl;
+//cout<<"jeface le bntaaaa"<<list_diagonal.size()<<endl;
 }
 }
 

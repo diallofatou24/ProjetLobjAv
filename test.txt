@@ -1,0 +1,61 @@
+#format de l'ecriture du joueur:
+#Ligne1:id nom score 
+#pour chaque pion: on a une ligne:
+#valeur de pion la case:positionX positionY couleur etat(qui est 1 ou 0) valeur couleurPion typePion9
+9999 joueur1
+1 diallo 0
+1 0 1 noir true P1 blanc pion
+1 0 3 noir true P1 blanc pion
+1 0 5 noir true P1 blanc pion
+1 0 7 noir true P1 blanc pion
+1 0 9 noir true P1 blanc pion
+1 1 0 noir true P1 blanc pion
+1 1 2 noir true P1 blanc pion
+1 1 4 noir true P1 blanc pion
+1 1 6 noir true P1 blanc pion
+1 1 8 noir true P1 blanc pion
+1 2 1 noir true P1 blanc pion
+1 2 3 noir true P1 blanc pion
+1 2 5 noir true P1 blanc pion
+1 2 7 noir true P1 blanc pion
+1 2 9 noir true P1 blanc pion
+1 3 0 noir true P1 blanc pion
+1 3 2 noir true P1 blanc pion
+1 3 4 noir true P1 blanc pion
+1 3 6 noir true P1 blanc pion
+1 3 8 noir true P1 blanc pion
+9999 joueur2
+2 sow 0
+1 9 0 noir true P2 noir pion
+1 9 2 noir true P2 noir pion
+1 9 4 noir true P2 noir pion
+1 9 6 noir true P2 noir pion
+1 9 8 noir true P2 noir pion
+1 8 1 noir true P2 noir pion
+1 8 3 noir true P2 noir pion
+1 8 5 noir true P2 noir pion
+1 8 7 noir true P2 noir pion
+1 8 9 noir true P2 noir pion
+1 7 0 noir true P2 noir pion
+1 7 2 noir true P2 noir pion
+1 7 4 noir true P2 noir pion
+1 7 6 noir true P2 noir pion
+1 7 8 noir true P2 noir pion
+1 6 1 noir true P2 noir pion
+1 6 3 noir true P2 noir pion
+1 6 5 noir true P2 noir pion
+1 6 7 noir true P2 noir pion
+1 6 9 noir true P2 noir pion
+9999 cases
+0 0 blanc false -- ; 0 1 noir true P1 ; 0 2 blanc false -- ; 0 3 noir true P1 ; 0 4 blanc false -- ; 0 5 noir true P1 ; 0 6 blanc false -- ; 0 7 noir true P1 ; 0 8 blanc false -- ; 0 9 noir true P1 ;
+1 0 noir true P1 ; 1 1 blanc false -- ; 1 2 noir true P1 ; 1 3 blanc false -- ; 1 4 noir true P1 ; 1 5 blanc false -- ; 1 6 noir true P1 ; 1 7 blanc false -- ; 1 8 noir true P1 ; 1 9 blanc false -- ;
+2 0 blanc false -- ; 2 1 noir true P1 ; 2 2 blanc false -- ; 2 3 noir true P1 ; 2 4 blanc false -- ; 2 5 noir true P1 ; 2 6 blanc false -- ; 2 7 noir true P1 ; 2 8 blanc false -- ; 2 9 noir true P1 ;
+3 0 noir true P1 ; 3 1 blanc false -- ; 3 2 noir true P1 ; 3 3 blanc false -- ; 3 4 noir true P1 ; 3 5 blanc false -- ; 3 6 noir true P1 ; 3 7 blanc false -- ; 3 8 noir true P1 ; 3 9 blanc false -- ;
+4 0 blanc false -- ; 4 1 noir false XX ; 4 2 blanc false -- ; 4 3 noir false XX ; 4 4 blanc false -- ; 4 5 noir false XX ; 4 6 blanc false -- ; 4 7 noir false XX ; 4 8 blanc false -- ; 4 9 noir false XX ;
+5 0 noir false XX ; 5 1 blanc false -- ; 5 2 noir false XX ; 5 3 blanc false -- ; 5 4 noir false XX ; 5 5 blanc false -- ; 5 6 noir false XX ; 5 7 blanc false -- ; 5 8 noir false XX ; 5 9 blanc false -- ;
+6 0 blanc false -- ; 6 1 noir true P2 ; 6 2 blanc false -- ; 6 3 noir true P2 ; 6 4 blanc false -- ; 6 5 noir true P2 ; 6 6 blanc false -- ; 6 7 noir true P2 ; 6 8 blanc false -- ; 6 9 noir true P2 ;
+7 0 noir true P2 ; 7 1 blanc false -- ; 7 2 noir true P2 ; 7 3 blanc false -- ; 7 4 noir true P2 ; 7 5 blanc false -- ; 7 6 noir true P2 ; 7 7 blanc false -- ; 7 8 noir true P2 ; 7 9 blanc false -- ;
+8 0 blanc false -- ; 8 1 noir true P2 ; 8 2 blanc false -- ; 8 3 noir true P2 ; 8 4 blanc false -- ; 8 5 noir true P2 ; 8 6 blanc false -- ; 8 7 noir true P2 ; 8 8 blanc false -- ; 8 9 noir true P2 ;
+9 0 noir true P2 ; 9 1 blanc false -- ; 9 2 noir true P2 ; 9 3 blanc false -- ; 9 4 noir true P2 ; 9 5 blanc false -- ; 9 6 noir true P2 ; 9 7 blanc false -- ; 9 8 noir true P2 ; 9 9 blanc false -- ;
+9999tourEtNBtour
+1 0

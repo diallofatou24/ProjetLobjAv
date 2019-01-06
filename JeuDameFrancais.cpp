@@ -30,8 +30,7 @@ return joueur1;
     return joueur2;
     };
 
-
-
+std::vector<std::vector<Case> > JeuDameFrancais::getCases(){return cases;}
 int JeuDameFrancais::gettour(){
 return tour;
        };
