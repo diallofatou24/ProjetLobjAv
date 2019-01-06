@@ -39,7 +39,7 @@ bool bas);
 void mise_jour_rafle_plateau(Case& c,int id_joueur,int taille_damier);
 
 
->>>>>>> 3e1f3adc0308defc204ee5f091074164777a7f0d
+
 virtual ~Pion();
 };
 #endif // PION_HPP
