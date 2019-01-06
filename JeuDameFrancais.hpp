@@ -25,22 +25,18 @@ static bool abondon;
 
 
 	JeuDameFrancais();
-
 	JeuDameFrancais(Couleur, Couleur);
-    JeuDameFrancais(Joueur* j1, Joueur*j2, std::vector<std::vector < Case > > v);
-
+       JeuDameFrancais(Joueur* j1, Joueur*j2, std::vector<std::vector < Case > > v);
 	JeuDameFrancais(Couleur, Couleur,int nbpion);
-
 
 
     Joueur* getjoueur1();
     Joueur* getjoueur2();
-    std::vector<std::vector<Case> > getCases();
 
     static int gettour();
     static void setnbtour(int i);
+	  static void settour(int i);
       static int getnbtour();
-       static void settour(int i);
 
 	static Couleur lectureCouleur();
 
