@@ -1,8 +1,8 @@
 C= g++ --std=c++11 -Wall
 all:dame
 
-dame: main.o JeuDameFrancais.o Pion.o Case.o Joueur.o Case.hpp Couleur.hpp Joueur.hpp
-	$(C) -o dame main.o JeuDameFrancais.o Pion.o Case.o Joueur.o 
+dame: main.o JeuDameFrancais.o Pion.o Case.o Joueur.o Case.hpp Couleur.hpp Joueur.hpp Backup.o
+	$(C) -o dame main.o JeuDameFrancais.o Pion.o Case.o Joueur.o Backup.o
 main.o: main.cpp JeuDameFrancais.hpp 
 	$(C) -c  main.cpp
 
@@ -16,6 +16,8 @@ Case.o: Case.cpp Case.cpp Couleur.hpp
 	$(C) -c Case.cpp
 Joueur.o: Joueur.cpp Joueur.hpp Pion.hpp
 	$(C) -c Joueur.cpp
+Backup.o: Backup.cpp Backup.hpp
+	$(C) -c Backup.cpp
 
 
 
