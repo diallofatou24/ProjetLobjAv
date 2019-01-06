@@ -18,7 +18,10 @@ JeuDameFrancais::JeuDameFrancais(){}
 JeuDameFrancais::JeuDameFrancais(Couleur c1, Couleur c2):joueur1{createJoueur(1,20, c1)}, joueur2{createJoueur(2,20, c2)}{
 if(c1==Couleur::blanc){tour=1;}else{tour=2;}
 }
+JeuDameFrancais::JeuDameFrancais(Joueur* j1, Joueur*j2, std::vector<std::vector < Case > > v):joueur1{j1},joueur2{j2}, cases{v}{
 
+
+}
 Joueur* JeuDameFrancais::getjoueur1(){
 return joueur1;
 
@@ -39,10 +42,14 @@ return tour;
  nb_tour=i;
 
  }
+ void JeuDameFrancais::settour(int i){
+ 	tour = i;
+ }
 
 int JeuDameFrancais::getnbtour(){
 return nb_tour;
      }
+     std::vector<std::vector<Case> > JeuDameFrancais::getCases(){return cases;}
 
 Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 	string n;
@@ -129,7 +136,7 @@ Joueur* JeuDameFrancais::createJoueur(int id, int nbPions, Couleur colChoisi){
 	void JeuDameFrancais::createCases(int hauteur, int largeur){
 		cases.resize(hauteur);
 		for(int i(0);i< (int)cases.size();i++)
-			cases[i].resize(largeur);
+			cases[i] = std::vector<Case>(largeur);
 		for(int i(0);i<(int)cases.size();i++){
 			for(int j(0);j< (int) cases[i].size() ;j++){
 				if((i+j)%2 ==0){
@@ -394,6 +401,3 @@ int JeuDameFrancais::Split(vector<string>& vecteur, string chaine, char separate
 
 	return vecteur.size();
 }
-
-
-

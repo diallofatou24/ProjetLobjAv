@@ -32,18 +32,38 @@ Joueur::Joueur():id{0},nom{"Joueur1"},score{0}{}
 		score = score + c;
 	}
 	void Joueur::affichePions()const{
-		for(int i(0); i<20;i++){
-			std::cout << "J" << id << " " ;
+		int taille = (int) pions.size();
+		for(int i(0); i<taille;i++){
+		std::cout << "J" << id << " " ;
+
 		}
-		std::cout << std::endl;
+		//std::cout << std::endl;
 	}
 	void Joueur::addPions(Couleur c, TypePion tp){
-		for (int i(0);i < 20;i++){
+		int taille = (int) pions.size();
+		for (int i(0);i < taille;i++){
 			Pion p(1,nullptr,c,tp);
 			pions.at(i) =p;
 		}
 		//std::cout << pions.at(0).getColor();
 		}
+
+//--------------fonctions a ajouter pour regle git
+		void Joueur::addPion(Pion p,int i){
+	pions.at(i) = p;
+}
+void Joueur::resizePions(int size){
+	pions.resize(size);
+}
+
+    void Joueur::aff()const{
+    	cout << "id: "<< id << " nom: " << nom <<" score: " << score << endl;
+    	int taille = (int) pions.size();
+		for (int i(0);i < taille;i++){
+			
+			pions.at(i).aff();
+		}
+    }
 
 //--------------------------------------------------------------rafle
 
@@ -136,7 +156,7 @@ void Joueur::trouver_pion_adverse(vector<Case>& list_diagonal,Case& c,bool haut,
 bool bas){
 
 
-for(int i=0;i<list_diagonal.size();i++){
+for(int i=0;i<(int)list_diagonal.size();i++){
 
 if(list_diagonal[i].getPositionX()==c.getPositionX() && list_diagonal[i].getPositionY()==c.getPositionY())
 {
@@ -144,7 +164,7 @@ if(list_diagonal[i].getPositionX()==c.getPositionX() && list_diagonal[i].getPosi
 list_diagonal.erase(list_diagonal.begin()+i);
 
 if(haut){
-for(int i=0;i<list_diagonal.size();i++){
+for(int i=0;i<(int)list_diagonal.size();i++){
 if(list_diagonal[i].getPositionX()<c.getPositionX()){
 list_diagonal.erase(list_diagonal.begin()+i);
 
@@ -152,7 +172,7 @@ list_diagonal.erase(list_diagonal.begin()+i);
 }
 }else if(bas){
 
-for(int i=0;i<list_diagonal.size();i++){
+for(int i=0;i<(int)list_diagonal.size();i++){
 //cout<<"element"<<list_diagonal[i].getPositionX()<<"yyy"<<list_diagonal[i].getPositionY()<<endl;
 if(list_diagonal[i].getPositionX()>c.getPositionX()){
 list_diagonal.erase(list_diagonal.begin()+i);
@@ -177,7 +197,7 @@ return;
 
 cout<<"La case de destination ne fait pas partie de la diagonale de votre pion"<<endl;
 
-for(int i=0;i<list_diagonal.size();i++){
+for(int i=0;i<(int)list_diagonal.size();i++){
 
 list_diagonal.erase(list_diagonal.begin()+i);
 i--;
@@ -272,7 +292,7 @@ return false;
 
 
 
-for(int i=0;i<pions.size();i++){
+for(int i=0;i<(int)pions.size();i++){
 
 if(pions[i].getCasePion()->getPositionX()==n/10 && pions[i].getCasePion()->getPositionY()==n%10){
 

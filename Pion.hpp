@@ -24,6 +24,7 @@ void setValeur(int v);
 void setCasePion(Case * c);
 void setColor(Couleur c);
 void setType(TypePion p);
+void aff()const;
 virtual ~Pion();
 };
 #endif // PION_HPP

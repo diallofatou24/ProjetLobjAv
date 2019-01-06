@@ -18,6 +18,7 @@ private:
 public:
      Case();
 	Case(int px, int py, Couleur c, std::string);
+	Case(int px, int py, Couleur c, bool et,std::string);
 	virtual ~Case();
 	void affiche()const;
 	void setEtat(bool e);
@@ -28,7 +29,10 @@ public:
     void setPositionY(int y);
 	Couleur getCouleur();
 	bool getEtat();
+	std::string getValeur();
 	void setValEtat(std::string v , bool et);
+	void  aff()
+	;
 };
 
 #endif

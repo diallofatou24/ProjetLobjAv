@@ -23,6 +23,10 @@ public:
 	void setScore(int c);
 void affichePions()const;
 void addPions(Couleur c, TypePion p);
+void addPion(Pion p, int i);
+void resizePions(int size);
+
+    void aff()const;
 Pion* verif_pion(std::string& valeur);
 bool deplacement(Pion* p,Case& c);
 std::vector<Case> diagonale(Case c,std::vector<std::vector<Case> >* cases,bool haut,bool droite,bool gauche,

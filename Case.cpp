@@ -10,6 +10,10 @@ Case::Case(int x, int y, Couleur c, std::string val):positionX{x},positionY{y}, 
 Case::Case(){
 
 }
+Case::Case(int x, int y, Couleur c, bool et,std::string val):positionX{x},positionY{y}, couleur{c},etat{et},valeur{val}{
+
+
+}
 Case::~Case(){
 
 }
@@ -33,6 +37,7 @@ int Case::getPositionY(){
 bool Case::getEtat(){
 	return etat;
 }
+std::string Case::getValeur(){return valeur;}
 void Case::setValEtat(std::string v , bool et){
 	valeur= v;
 	etat = et;
@@ -50,5 +55,8 @@ positionX=x;
 void Case::setPositionY(int y){
 
 positionY=y;
+    }
+    void  Case::aff(){
+    	std::cout << positionX << ", "<< positionY << ", " <<couleur <<", " << boolalpha << etat << " valeur: " << valeur;
 
     }
