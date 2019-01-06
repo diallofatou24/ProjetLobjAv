@@ -147,7 +147,7 @@ return false;
 
 if(condition){
 
-for(int i=0;i<list_case_diagonal.size();i++){
+for(int i=0;i<(int)list_case_diagonal.size();i++){
 
 if(list_case_diagonal[i].getEtat())
 {
@@ -428,6 +428,3 @@ int sizej = plateau.at(0).size();
 
 
 
-
-
->>>>>>> 3e1f3adc0308defc204ee5f091074164777a7f0d
