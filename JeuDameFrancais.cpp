@@ -19,7 +19,7 @@ JeuDameFrancais::JeuDameFrancais(){}
 JeuDameFrancais::JeuDameFrancais(Couleur c1, Couleur c2,int nbpion):joueur1{createJoueur(1,nbpion, c1)}, joueur2{createJoueur(2,nbpion, c2)}{
 if(c1==Couleur::blanc){tour=1;}else{tour=2;}
 }
-
+JeuDameFrancais::JeuDameFrancais(Joueur* j1, Joueur*j2, std::vector<std::vector < Case > > v):joueur1{j1},joueur2{j2}, cases{v}{}
 Joueur* JeuDameFrancais::getjoueur1(){
 return joueur1;
 
@@ -39,6 +39,9 @@ return tour;
  void JeuDameFrancais::setnbtour(int i){
  nb_tour=i;
 
+ }
+void JeuDameFrancais::settour(int i){
+ 	tour = i;
  }
 
 int JeuDameFrancais::getnbtour(){
