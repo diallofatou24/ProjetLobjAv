@@ -35,6 +35,12 @@ void Pion::setColor(Couleur c){
 void Pion::setType(TypePion p){
 	type = p;
 }
+void  Pion::aff()const{
+    	std::cout << "valeur: " << valeur << " Case: ";
+    	casePion->aff();
+    	std::cout<< " Couleur: " << color << " type: "<< type << std::endl; 
+    }
+
 //*********************************************************************************************************
 
 bool Pion::deplacement_valid(Case& c,int id_joueur){
