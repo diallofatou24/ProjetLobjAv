@@ -21,6 +21,8 @@ public:
 	void setCasePions(int idx, Case& c);
 	void setTypePions(int idx, TypePion tp);
 	void setScore(int c);
+void restorer_pion_supprime(std::vector<Pion>& liste_sup,std::vector<std::vector<Case>>& cases);
+	void supprimerPion(int i);
 void affichePions()const;
 void addPions(Couleur c, TypePion p);
 void addPion(Pion p, int i);
@@ -28,18 +30,21 @@ void resizePions(int size);
 
     void aff()const;
 Pion* verif_pion(std::string& valeur);
-bool deplacement(Pion* p,Case& c);
-std::vector<Case> diagonale(Case c,std::vector<std::vector<Case> >* cases,bool haut,bool droite,bool gauche,
-bool bas);
 
 
-std::vector<Case> rafle_de_pion(Pion* p,Case& c,std::vector<std::vector<Case>>* cases);
-void trouver_pion_adverse(std::vector<Case>& v,Case& c,bool haut,bool droite,bool gauche,
-bool bas);
+bool rafle(std::string cdepart,std::string cdest,std::vector<std::vector<Case>>& cases,Joueur& j,Pion& p_adverse,
+bool verif);
+bool deplacement(std::string cdepart,std::string cdest,std::vector<std::vector<Case>>& cases,bool verif);
 
-bool deplacement_de_pion(Pion* p,Case& c,int id);
+Pion* verif_pion_rafle(Joueur& jj,std::vector<Case>& v);
+bool liste_coup_valide(std::vector<std::vector<Case> >& cases,Joueur& j,bool verif);
 
-std::vector<Case> rafle(Pion* p,Case& c,std::vector<std::vector<Case>>* cases);
+void case_vide(std::vector<Case>& v);
+bool aide_deplace_valide(Pion& p,std::vector<Case>& v,std::vector<std::vector<Case> >& cases,bool verif);
+bool aide_rafle_valide(Pion& p,std::vector<Case>& v,std::vector<std::vector<Case> >& cases,Joueur& j,std::vector<Pion>&
+liste_destruction,bool verif);
+
+void destruction_pion(std::vector<Pion>& liste_detruite);
 
 	virtual ~Joueur();
 

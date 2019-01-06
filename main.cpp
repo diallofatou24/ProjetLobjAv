@@ -16,7 +16,7 @@
 		Couleur c=JeuDameFrancais::lectureCouleur();
 		Couleur c2= (c==Couleur::noir)?Couleur::blanc:Couleur::noir;
 
-		JeuDameFrancais jdn(c,c2);
+		JeuDameFrancais jdn(c,c2,20);
 		jdn.createCases(10,10);
 			//jdn.affichePlateau();
 		cout << "J1" << endl;
