@@ -44,6 +44,22 @@ Joueur::Joueur():id{0},nom{"Joueur1"},score{0}{}
 		}
 		//std::cout << pions.at(0).getColor();
 		}
+//--------------fonctions a ajouter pour regle git
+		void Joueur::addPion(Pion p,int i){
+	pions.at(i) = p;
+}
+void Joueur::resizePions(int size){
+	pions.resize(size);
+}
+
+    void Joueur::aff()const{
+    	cout << "id: "<< id << " nom: " << nom <<" score: " << score << endl;
+    	int taille = (int) pions.size();
+		for (int i(0);i < taille;i++){
+			
+			pions.at(i).aff();
+		}
+    }
 
 		void Joueur::supprimerPion(int i){
 
